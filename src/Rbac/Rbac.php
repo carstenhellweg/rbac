@@ -41,7 +41,7 @@ class Rbac
     public function isGranted($roles, $permission)
     {
         if ($roles instanceof RoleInterface) {
-            $roles = [$roles];
+            $roles = array($roles);
         }
 
         $iterator = $this->traversalStrategy->getRolesIterator($roles);
