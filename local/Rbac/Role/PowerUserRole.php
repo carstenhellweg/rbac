@@ -2,17 +2,28 @@
 
 namespace Omnidoo\Rbac\Role;
 
-class AdminRole extends AbstractRole
+class PowerUserRole extends AbstractRole
 {
 
 	/**
-	 * @return array
+	 * @inheritdoc
 	 */
 	public function getChildrenClassNamesList()
 	{
 		return array(
-			__NAMESPACE__ . '\\PowerUserRole',
-			__NAMESPACE__ . '\\GuestRole'
+			'AdvancedUserRole',
 		);
 	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function getPermissionClassNamesList()
+	{
+		return array(
+			'QuestionModerate'
+		);
+	}
+
+
 }

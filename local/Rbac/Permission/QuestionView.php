@@ -10,5 +10,4 @@ namespace Omnidoo\Rbac\Permission;
 
 class QuestionView extends AbstractPermission
 {
-
 }

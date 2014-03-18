@@ -2,6 +2,15 @@
 
 namespace Omnidoo\Rbac\Role;
 
-class UserRole extends AbstractRole
+class GuestRole extends AbstractRole
 {
+	/**
+	 * @inherited
+	 */
+	public function getPermissionClassNamesList()
+	{
+		return array(
+				'PublicPageView'
+		);
+	}
 }

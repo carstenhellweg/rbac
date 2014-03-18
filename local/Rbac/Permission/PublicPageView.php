@@ -8,7 +8,7 @@
 
 namespace Omnidoo\Rbac\Permission;
 
-class QuestionView extends AbstractPermission
+class PublicPageView extends AbstractPermission
 {
 
 }

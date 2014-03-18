@@ -1,13 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: al
- * Date: 3/17/14
- * Time: 1:07 PM
- */
 
 namespace Omnidoo\Rbac\Permission;
 
+/**
+ * Class AbstractPermission
+ * @package Omnidoo\Rbac\Permission
+ */
 abstract class AbstractPermission implements PermissionInterface
 {
 	/**
@@ -15,7 +13,7 @@ abstract class AbstractPermission implements PermissionInterface
 	 */
 	public function __toString()
 	{
-		return get_class();
+		return get_called_class();
 	}
 
 }

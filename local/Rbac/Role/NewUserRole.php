@@ -2,16 +2,17 @@
 
 namespace Omnidoo\Rbac\Role;
 
-class AdminRole extends AbstractRole
+class NewUserRole extends AbstractRole
 {
-
 	/**
-	 * @return array
+	 * @inheritdoc
 	 */
-	public function getChildrenClassNamesList()
+	public function getPermissionClassNamesList()
 	{
 		return array(
-			__NAMESPACE__ . '\\AdvancedUserRole',
+	 		'QuestionRead',
+			'QuestionCreate'
 		);
 	}
+
 }

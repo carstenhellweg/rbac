@@ -8,7 +8,7 @@
 
 namespace Omnidoo\Rbac\Permission;
 
-class QuestionUpdate extends AbstractPermission
+class QuestionModerate extends AbstractPermission
 {
 
 }
