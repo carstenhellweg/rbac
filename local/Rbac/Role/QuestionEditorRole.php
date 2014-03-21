@@ -2,29 +2,20 @@
 
 namespace Omnidoo\Rbac\Role;
 
-class AdvancedUserRole extends AbstractRole
+class QuestionEditorRole extends AbstractRole
 {
-	/**
-	 * @inheritdoc
-	 */
 	public function getChildrenClassNamesList()
 	{
 		return array(
-			'UserRole'
+			'QuestionReader'
 		);
 	}
 
-	/**
-	 * @inheritdoc
-	 */
 	public function getPermissionClassNamesList()
 	{
 		return array(
-			'QuestionTag',
-			'QuestionFlag',
-			'QuestionDelete',
+			'QuestionUpdate'
 		);
 	}
-
 
 }

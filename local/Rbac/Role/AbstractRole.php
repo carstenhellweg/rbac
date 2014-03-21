@@ -45,9 +45,9 @@ abstract class AbstractRole extends HierarchicalRole implements HierarchicalRole
 
 			foreach ($childrenClassNames as $roleClassName)
 			{
-				$class = $rolesNs . $roleClassName;
+				$class = $rolesNs . $roleClassName . 'Role';
 
-				// TODO: check cyclic references at adding of children and break with a logical exception
+				// TODO: try to catch cyclic references at adding of children and break with a logical exception
 				// throw new LogicException(
 				//	'Recursion supposed by adding of child "'
 				//	. $class . '" to the current role instance "'

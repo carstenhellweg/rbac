@@ -2,17 +2,13 @@
 
 namespace Omnidoo\Rbac\Role;
 
-class AdminRole extends AbstractRole
+class QuestionWriterRole extends AbstractRole
 {
-
-	/**
-	 * @inheritdoc
-	 */
 	public function getChildrenClassNamesList()
 	{
 		return array(
-			'User',
-			'QuestionModerator'
+			'QuestionAuthor',
+			'QuestionEditor'
 		);
 	}
 }

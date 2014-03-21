@@ -3,6 +3,7 @@
 namespace Omnidoo\Rbac;
 
 use Rbac\Rbac;
+use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
 
 /**
  * Class RbacService
@@ -19,12 +20,18 @@ class RbacService
 	 * @param $config
 	 * @return Rbac
 	 */
-	public function createService($config)
+	public function createService($config = null)
 	{
 		if (null === $this->service)
 		{
-			$strategyClass = $config['strategy'];
-			$this->service = new Rbac(new $strategyClass);
+			if (null === $config)
+			{
+				$this->service = new Rbac(new RecursiveRoleIteratorStrategy());
+			} else
+			{
+				$strategyClass = $config['strategy'];
+				$this->service = new Rbac(new $strategyClass);
+			}
 		}
 		return $this->service;
 	}
