@@ -4,25 +4,39 @@ namespace Omnidoo\Rbac;
 
 
 use InvalidArgumentException;
+use Omnidoo\Rbac\Role\Behavioural\BehaviouralHierarchicalRoleInterface;
 use Omnidoo\Rbac\Role\HierarchicalRoleInterface;
 use Traversable;
 
-class RoleService
+class RoleCollector
 {
+	/**
+	 * @var
+	 */
+	protected $behaviouralRoles;
 	/**
 	 * @param $name
 	 * @throws InvalidArgumentException
 	 * @return HierarchicalRoleInterface
 	 */
-	public function create($name)
+	protected function create($name)
 	{
 		$className = __NAMESPACE__ . '\\Role\\' . $name . 'Role';
 
-		if ( ! class_exists($className))
+		if (!class_exists($className))
 		{
 			throw new InvalidArgumentException('Invalid class name "' . $className . '" could not create role instance');
 		}
+
 		return new $className;
+	}
+
+	/**
+	 * @return $this
+	 */
+	public function getInstance()
+	{
+		return new $this;
 	}
 
 	/**
@@ -33,7 +47,8 @@ class RoleService
 	 */
 	public function createCollection($roles)
 	{
-		if ($roles instanceof Traversable) {
+		if ($roles instanceof Traversable)
+		{
 			$roles = iterator_to_array($roles);
 		}
 
@@ -48,6 +63,21 @@ class RoleService
 			$collection[] = $this->create($role);
 		}
 
+		if (!empty($this->behaviouralRoles))
+		{
+			foreach ($this->behaviouralRoles as $behaviorRole)
+			{
+				$collection[] = $behaviorRole;
+			}
+		}
 		return $collection;
+	}
+
+	/**
+	 * @param $behaviouralRole
+	 */
+	public function addBehaviouralRole(BehaviouralHierarchicalRoleInterface $behaviouralRole)
+	{
+		$this->behaviouralRoles[] = $behaviouralRole;
 	}
 }

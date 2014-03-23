@@ -2,7 +2,6 @@
 
 namespace Omnidoo\Rbac\Role;
 
-use LogicException;
 use Rbac\Role\HierarchicalRole;
 
 abstract class AbstractRole extends HierarchicalRole implements HierarchicalRoleInterface
@@ -18,7 +17,7 @@ abstract class AbstractRole extends HierarchicalRole implements HierarchicalRole
 	public function __construct()
 	{
 		$name = get_called_class();
-		$this->name = $this->shortName($name);
+		$this->name = $this->canonicalName($name);
 		$this->init();
 	}
 
@@ -26,7 +25,7 @@ abstract class AbstractRole extends HierarchicalRole implements HierarchicalRole
 	 * @param $name
 	 * @return string
 	 */
-	protected function shortName($name)
+	protected function canonicalName($name)
 	{
 		return trim(str_replace(__NAMESPACE__, '', substr($name, 0, -4)), '\\');
 	}
@@ -86,5 +85,13 @@ abstract class AbstractRole extends HierarchicalRole implements HierarchicalRole
 	public function getPermissionClassNamesList()
 	{
 		return array();
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function __toString()
+	{
+		return $this->getName();
 	}
 }

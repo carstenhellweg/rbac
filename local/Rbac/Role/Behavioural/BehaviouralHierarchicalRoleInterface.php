@@ -1,17 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: al
- * Date: 3/18/14
- * Time: 12:47 PM
- */
 
-namespace Omnidoo\Rbac\Role;
+namespace Omnidoo\Rbac\Role\Behavioural;
 
+use Omnidoo\Rbac\Role\HierarchicalRoleInterface;
 
-use Rbac\Role\HierarchicalRoleInterface as RbacHierarchicalRoleInterface;
-
-interface HierarchicalRoleInterface extends RbacHierarchicalRoleInterface
+interface BehaviouralHierarchicalRoleInterface extends HierarchicalRoleInterface
 {
 
 	/**

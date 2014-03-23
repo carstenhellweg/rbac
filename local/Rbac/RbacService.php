@@ -12,7 +12,7 @@ use Rbac\Traversal\Strategy\RecursiveRoleIteratorStrategy;
 class RbacService
 {
 	/**
-	 * @var
+	 * @var Rbac
 	 */
 	protected $service;
 
@@ -20,14 +20,15 @@ class RbacService
 	 * @param $config
 	 * @return Rbac
 	 */
-	public function createService($config = null)
+	public function getRbac($config = null)
 	{
 		if (null === $this->service)
 		{
 			if (null === $config)
 			{
 				$this->service = new Rbac(new RecursiveRoleIteratorStrategy());
-			} else
+			}
+			else
 			{
 				$strategyClass = $config['strategy'];
 				$this->service = new Rbac(new $strategyClass);
